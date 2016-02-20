@@ -23,6 +23,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'mongoid', '~> 5.1.0'
 
+gem 'ruby-trello', '~> 1.4.1'
+
+gem 'togglv8', '~> 1.0.8'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
