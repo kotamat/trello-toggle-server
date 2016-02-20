@@ -25,7 +25,9 @@ gem 'mongoid', '~> 5.1.0'
 
 gem 'ruby-trello', '~> 1.4.1'
 
-gem 'togglv8', '~> 1.0.8'
+gem 'togglv8', '~> 1.0.4'
+
+gem 'awesome_print', :require => 'ap'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

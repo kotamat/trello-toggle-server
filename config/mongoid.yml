@@ -5,11 +5,11 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: trello_toggl_development
+      database: trello-toggl
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - localhost:27017
+        - ds053310.mongolab.com:53310
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -24,10 +24,10 @@ development:
         #     - use: web
 
         # The name of the user for authentication.
-        # user: 'user'
+        user: 'app'
 
         # The password of the user for authentication.
-        # password: 'password'
+        password: 'LgvBiDvQ'
 
         # The user's database roles.
         # roles:
