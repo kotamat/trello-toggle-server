@@ -1,5 +1,11 @@
+require 'trello'
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
+  before_action :trello_setting
+  protect_from_forgery with: :null_session
+  NEW_LIST = "new"
+  BOARD_ID = "FgLF9iac"
+
 
   # GET /cards
   # GET /cards.json
@@ -25,6 +31,11 @@ class CardsController < ApplicationController
   # POST /cards.json
   def create
     @card = Card.new(card_params)
+
+    # trello add
+    @lists = get_lists(BOARD_ID)
+    new_list = @lists.find { |list| list.name == NEW_LIST }
+    Trello::Card.create name: card_params[:name], board_id: BOARD_ID, list_id: new_list.id
 
     respond_to do |format|
       if @card.save
@@ -69,6 +80,18 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.fetch(:card, {})
+      params.fetch(:card, {}).permit(:name)
+    end
+
+    def trello_setting
+      Trello.configure do |config|
+          config.developer_public_key = "ee1bc88f30d0ce70f488181f00ecb43c"
+          config.member_token = "0e7697d52103a7dd1cd8499a7a7e1a0e543d0ea4fb6e3efbe191fa039b7a435d"
+      end
+    end
+
+    def get_lists(board_id)
+        lists = Trello.client.get "/board/#{board_id}/lists"
+        Trello::List.parse lists
     end
 end
